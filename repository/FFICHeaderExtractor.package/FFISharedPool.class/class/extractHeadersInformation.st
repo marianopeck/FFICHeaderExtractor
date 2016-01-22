@@ -14,6 +14,7 @@ extractHeadersInformation
 	log ifNotEmpty: [ 
 		log inspect.
 		self error: 'There was a problem in the autogeneration. You may want to check ', extractor logFilename
-		 ]
+		 ].
+	^ extractor
 	
 	

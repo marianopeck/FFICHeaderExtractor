@@ -1,5 +1,5 @@
 initialization
-initializeVariablesFromExtracted
+initializeVariablesFromStonExtracted
 	| stonStream |
 	stonStream := (Smalltalk os preprocessorExtractorFor: self) outputFilename asFileReference readStream. 
 	parsedDict := STON fromStream: stonStream.

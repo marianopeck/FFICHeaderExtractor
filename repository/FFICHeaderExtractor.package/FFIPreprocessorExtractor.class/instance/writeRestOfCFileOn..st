@@ -56,9 +56,10 @@ void writeSmalltalkFileFromConstants(FILE* file)
 {
     int i;
     fprintf(file, "%s\n", METHOD_NAME);
+    fprintf(file, "\t<platformName: ''%s'' wordSize: %d>\n", PLATFORM_NAME, WORD_SIZE);
     for (i=0; i<SIZE; i++) {
         if (constants[i].defined) {
-            fprintf(file, "\t%s := %d;\n", constants[i].name, constants[i].value );
+            fprintf(file, "\t%s := %d.\n", constants[i].name, constants[i].value );
         } else {
             fprintf(file, "\t\"%s Undefined for this platform\"\n", constants[i].name);
         }
@@ -72,7 +73,7 @@ int main(int argc, const char * argv[]) {
     initializeConstantsArray();
     fillContantsArray();
     
-    FILE *file = fopen("', self stonFilename, '", "w");
+    FILE *file = fopen("', self outputFilename, '", "w");
     if (file == NULL)
     {
         printf("Error opening file!\n");
