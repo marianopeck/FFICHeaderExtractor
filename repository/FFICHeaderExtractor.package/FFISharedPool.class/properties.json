@@ -1,0 +1,16 @@
+{
+	"category" : "FFICHeaderExtractor",
+	"classinstvars" : [
+		"platformName",
+		"wordSize",
+		"parsedDict" ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "FFISharedPool",
+	"pools" : [
+		 ],
+	"super" : "SharedPool",
+	"type" : "normal" }
