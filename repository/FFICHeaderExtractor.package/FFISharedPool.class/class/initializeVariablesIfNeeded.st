@@ -1,4 +1,8 @@
 initialization
 initializeVariablesIfNeeded
-	self shouldInitializeVariables ifTrue: [ self initializeVariablesFromExtracted  ]
+	self shouldInitializeVariables ifTrue: [ 
+		self nilAllClassVars.
+		self initializeVariablesFromExtracted.
+		self updatePlatformInfo. 
+	]
 	

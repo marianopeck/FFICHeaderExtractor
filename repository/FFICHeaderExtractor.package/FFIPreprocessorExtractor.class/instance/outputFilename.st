@@ -1,3 +1,3 @@
 filenames
 outputFilename
-	^  self basicGeneralFilename, '.st'
+	^  self basicGeneralFilename, '.output'

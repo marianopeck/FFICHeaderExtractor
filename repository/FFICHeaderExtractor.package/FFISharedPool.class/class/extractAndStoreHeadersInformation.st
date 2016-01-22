@@ -2,4 +2,4 @@ extracting
 extractAndStoreHeadersInformation
 	| extractor |
 	extractor := self extractHeadersInformation.
-	self storeFromExtracted: extractor outputFilename
+	self storeFromExtracted: extractor 
