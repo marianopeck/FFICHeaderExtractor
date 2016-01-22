@@ -2,8 +2,7 @@
 	"category" : "FFICHeaderExtractor",
 	"classinstvars" : [
 		"platformName",
-		"wordSize",
-		"parsedDict" ],
+		"wordSize" ],
 	"classvars" : [
 		 ],
 	"commentStamp" : "",
