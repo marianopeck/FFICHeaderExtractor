@@ -1,5 +1,5 @@
 extracting
 extractAndStoreHeadersInformation
 	| extractor |
-	extractor := self extractHeadersInformation.
-	self storeFromExtracted: extractor 
+	extractor := Smalltalk os preprocessorExtractorFor: self.
+	extractor extractAndStoreHeadersInformation.
