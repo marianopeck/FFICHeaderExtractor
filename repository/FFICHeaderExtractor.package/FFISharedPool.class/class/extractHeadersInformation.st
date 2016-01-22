@@ -1,5 +1,5 @@
-generating
-autogenerateForCurrentPlatform
+extracting
+extractHeadersInformation
 	| extractor log |
 	extractor := Smalltalk os preprocessorExtractorFor: self.
 	[

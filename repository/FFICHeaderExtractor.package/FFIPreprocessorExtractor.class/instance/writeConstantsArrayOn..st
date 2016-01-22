@@ -5,6 +5,7 @@ writeConstantsArrayOn: stream
 struct preconstant {
     int value;
     char* name;
+	 int defined;
 };
 
 struct preconstant constants[SIZE];
@@ -14,6 +15,7 @@ void initializeConstantsArray(){
     for (i=0; i < SIZE; i++) {
         constants[i].value = 0;
         constants[i].name = "";
+        constants[i].defined = 0;
     }
 }
 '

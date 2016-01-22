@@ -1,5 +1,6 @@
 generating C program
 writeRestOfCFileOn: stream
+	stream cr.
 	stream nextPutAll: '/*
  Writes in a pretty-way STON format the constants name, values and sizeof.
  Example:
@@ -17,7 +18,7 @@ writeRestOfCFileOn: stream
  
  Then this STON file is directly parsed from Pharo
 */
-void writeOutputFileFromConstants(FILE* file)
+void writeStonFileFromConstants(FILE* file)
 {
     int i;
     int hadPrevious;
@@ -40,6 +41,31 @@ void writeOutputFileFromConstants(FILE* file)
     fprintf(file, "\n}\n");
 };
 
+/*
+ Writes a Smalltalk method source in which constant values are assigned directly into class vars.
+ Example:
+ 
+ initVariablesMacOS32
+	SIGABRT := 6;
+	SIGALRM := 14;
+    "SIGPOLL Undefined for this platform"
+
+ Then this file is compiled directly into a SharedPool class
+ */
+void writeSmalltalkFileFromConstants(FILE* file)
+{
+    int i;
+    fprintf(file, "%s\n", METHOD_NAME);
+    for (i=0; i<SIZE; i++) {
+        if (constants[i].defined) {
+            fprintf(file, "\t%s := %d;\n", constants[i].name, constants[i].value );
+        } else {
+            fprintf(file, "\t\"%s Undefined for this platform\"\n", constants[i].name);
+        }
+        
+    }
+};
+
 
 int main(int argc, const char * argv[]) {
     
@@ -52,7 +78,7 @@ int main(int argc, const char * argv[]) {
         printf("Error opening file!\n");
         exit(1);
     }
-    writeOutputFileFromConstants(file);
+    writeSmalltalkFileFromConstants(file);
     fclose(file);
     
     return 0;

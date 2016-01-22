@@ -7,7 +7,10 @@ writeListOfConstantsOn: aStream
  	#ifdef <1s>
         constants[<2s>].value = <1s>;
         constants[<2s>].name = "<1s>";
-    #endif') expandMacrosWith: each with: (index -1) asString ); cr
+		  constants[<2s>].defined = 1;
+  	#else
+        constants[<2s>].name = "<1s>";
+   #endif') expandMacrosWith: each with: (index -1) asString ); cr
 	].
 	aStream nextPutAll: '}'; cr.
 	

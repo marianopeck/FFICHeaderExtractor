@@ -1,0 +1,2 @@
+extracting
+storeFromExtracted: aStream
