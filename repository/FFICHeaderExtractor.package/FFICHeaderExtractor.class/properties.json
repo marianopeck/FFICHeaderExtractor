@@ -13,7 +13,7 @@
 		"includeFiles",
 		"headersToInclude",
 		"compiler" ],
-	"name" : "FFIPreprocessorExtractor",
+	"name" : "FFICHeaderExtractor",
 	"pools" : [
 		 ],
 	"super" : "Object",

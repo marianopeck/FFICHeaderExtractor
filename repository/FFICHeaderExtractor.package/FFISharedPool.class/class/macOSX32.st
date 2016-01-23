@@ -1,7 +1,7 @@
 platforms
 macOSX32
 
-	^ FFIPreprocessorExtractor new
+	^ FFICHeaderExtractor new
 		sharedPool: self;
 		platformName: 'Mac OS'; "Should match with 'Smalltalk os platformName ' "
 		wordSize: 32;
