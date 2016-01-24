@@ -1,0 +1,18 @@
+{
+	"category" : "FFICHeaderExtractor-Tests",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		"EACCES",
+		"EINVAL",
+		"SIGKILL",
+		"SIGTERM",
+		"WHATEVER" ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "TestingSharedPool",
+	"pools" : [
+		 ],
+	"super" : "FFISharedPool",
+	"type" : "normal" }
