@@ -1,3 +1,3 @@
 *FFICHeaderExtractor
-preprocessorExtractorFor: aSharedPool
+cHeaderExtractorFor: aSharedPool
 	^ self subclassResponsibility 
