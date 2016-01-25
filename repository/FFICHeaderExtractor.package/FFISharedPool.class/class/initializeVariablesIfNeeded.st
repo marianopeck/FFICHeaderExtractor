@@ -1,8 +1,12 @@
 initialization
 initializeVariablesIfNeeded
+	| selector | 
 	self shouldInitializeVariables ifTrue: [ 
-		self nilAllClassVars.
-		self initializeVariablesFromExtracted.
-		self updatePlatformInfo. 
+		selector := self lookupInitMethodForCurrentPlatform.
+		selector ifNotNil: [ 
+			self nilAllClassVars.
+			self initializeVariablesFrom: selector.
+			self updatePlatformInfo.
+		] 
 	]
 	
