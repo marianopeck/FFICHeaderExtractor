@@ -1,4 +1,4 @@
-extracting
+method generation
 storeFromExtracted
 	| methodSource |
 	methodSource := self buildMethodSource.
