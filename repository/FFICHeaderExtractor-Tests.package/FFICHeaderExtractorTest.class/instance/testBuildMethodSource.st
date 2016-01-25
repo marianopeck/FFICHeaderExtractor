@@ -13,4 +13,4 @@ testBuildMethodSource
 	self assert: (methodSource includesSubstring: '"WHATEVER is UNDEFINED for this platform"').
 	self assert: (methodSource includesSubstring: 'SIGKILL := 9.').
 	self assert: (methodSource includesSubstring: 'EINVAL := 22.').
-	self assert: methodSource lines size equals: 7. 
+	self assert: methodSource lines size equals: 8. 
