@@ -1,4 +1,4 @@
-as yet unclassified
+tests
 testCompileCProgram
 	| extractor | 
 	extractor := self testingSharedPool cHeaderExtractor.

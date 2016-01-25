@@ -3,16 +3,12 @@
 	"classinstvars" : [
 		 ],
 	"classvars" : [
-		"EACCES",
-		"EINVAL",
-		"SIGKILL",
-		"SIGTERM",
-		"WHATEVER" ],
+		 ],
 	"commentStamp" : "",
 	"instvars" : [
 		 ],
-	"name" : "TestingSharedPool",
+	"name" : "FFISharedPoolTest",
 	"pools" : [
 		 ],
-	"super" : "FFISharedPool",
+	"super" : "TestCase",
 	"type" : "normal" }
