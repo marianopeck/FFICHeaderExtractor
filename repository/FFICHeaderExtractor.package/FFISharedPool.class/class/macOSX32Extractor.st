@@ -4,7 +4,7 @@ macOSX32Extractor
 	^ FFICHeaderExtractor new
 		sharedPool: self;
 		platformName: 'Mac OS'; "IMPORTANT: Should match with 'Smalltalk os platformName ' "
-		wordSize: 32;
+		wordSize: 4;
 		cFlags: '-m32';
 		headersToInclude: self headersContainingVariables;
 		compiler: 'cc';
