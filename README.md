@@ -36,12 +36,18 @@ Then, from within Pharo, execute the following to install FFICHeaderExtractor:
 
 ```Smalltalk
 Metacello new
-    baseline: 'FFICHeaderExtractor';
+    configuration: 'FFICHeaderExtractor';
     repository: 'github://marianopeck/FFICHeaderExtractor:master/repository';
+	version: #stable;
     load.
 ```
 
+Besides the above installation instructions, FFICHeaderExtractor can also be installed from the `Catalog Browser`, already present in Pharo. Just open it, search for FFICHeaderExtractor, then right click, `Install stable version`.
+
+	
 > Important: so far FFICHeaderExtractor works only in OSX and Unix. 
+
+
 
 ## Getting Started
 The user of this tool will be a developer of a FFI-based project. As an example, let's say we want to call some functions from the `libc` (the standard C library) via FFI. `libc` is huge and it has lots of functions and constants. For our example we will take only a small portion of it. 
