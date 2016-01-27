@@ -8,6 +8,7 @@ This tool allows the developers of a FFI tool (any project which uses FFI to cal
 ##Table of Contents
 
 
+
   * [FFICHeaderExtractor](#fficheaderextractor)
     * [Table of Contents](#table-of-contents)
     * [Installation](#installation)
@@ -19,10 +20,12 @@ This tool allows the developers of a FFI tool (any project which uses FFI to cal
     * [Running the tests](#running-the-tests)
     * [Contributing](#contributing)
     * [History](#history)
+    * [Future work](#future-work)
     * [Authors](#authors)
     * [License](#license)
     * [Acknowledgments](#acknowledgments)
     * [Funding](#funding)
+
 
 
 ## Installation
@@ -223,10 +226,18 @@ Metacello new
 * Run all FFICHeaderExtractor tests to make sure you did not break anything. 
 * Push to the branch. Either from MC browser of with `git push origin MY_NEW_FEATURE`
 * Submit a pull request from github web interface.
+ 
 
 ## History
 You can see the whole changelog of the project [Changelog](CHANGELOG.md) for details about the release history. 
 
+
+## Future work
+Besides the [issues](https://github.com/marianopeck/FFICHeaderExtractor/issues), the following are also desired features:
+
+* Use `offsetof` and be able to extract structs information (internal organization and `sizeof()`).
+* Add support for compiling in Windows (`mingw`?).
+* Add this project to Pharo CI or Travis
 
 ## Authors
 
