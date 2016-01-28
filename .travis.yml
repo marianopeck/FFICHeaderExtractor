@@ -14,5 +14,3 @@ addons:
       - libfreetype6:i386
 script: 
   - scripts/run-tests.sh 
-before_install:
-  - brew update 
