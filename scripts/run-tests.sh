@@ -16,7 +16,7 @@ Metacello new
 
 "
 
-error=`/bin/bash -c "./pharo Pharo.image test —no-xterm --fail-on-failure "FFICHeaderExtractor.*" 2>&1"`
+error=`/bin/bash -c "./pharo Pharo.image test --no-xterm --fail-on-failure "FFICHeaderExtractor.*" 2>&1"`
 log=PharoDebug.log
 
 	
