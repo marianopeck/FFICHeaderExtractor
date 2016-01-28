@@ -1,4 +1,4 @@
-Ice [![Build Status](https://travis-ci.org/marianopeck/FFICHeaderExtractor.png?branch=master)](https://travis-ci.org/marianopeck/FFICHeaderExtractor)
+[![Build Status](https://travis-ci.org/marianopeck/FFICHeaderExtractor.png?branch=master)](https://travis-ci.org/marianopeck/FFICHeaderExtractor)
 ====
 
 
