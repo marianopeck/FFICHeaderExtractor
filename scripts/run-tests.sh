@@ -22,3 +22,10 @@ Metacello new
 ./pharo Pharo.image test --fail-on-failure "FFICHeaderExtractor.*" 2>&1
 
 if [ -s PharoDebug.log ]; then cat PharoDebug.log; fi
+	
+if [  -s PharoDebug.log ]; then
+	echo "PharoDebug.log exists"
+	cat PharoDebug.log
+else
+	echo "PharoDebug.log does NOT exist"
+fi
