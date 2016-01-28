@@ -28,4 +28,5 @@ else
 	echo "PharoDebug.log does NOT exist"
 fi
 
+echo "Pharo exit code was: $error"
 exit $error
