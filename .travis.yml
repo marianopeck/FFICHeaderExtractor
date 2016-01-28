@@ -9,5 +9,6 @@ addons:
       - lib32bz2-1.0
       - libssl1.0.0:i386
       - build-essential
+      - gcc-multilib
 script: 
   - scripts/run-tests.sh  
