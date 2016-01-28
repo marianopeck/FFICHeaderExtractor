@@ -5,6 +5,9 @@ set -ex
 wget --quiet -O - get.pharo.org/alpha+vm | bash
 
 ./pharo Pharo.image eval --save "
+
+Author fullName: 'Travis'.
+
 Metacello new 
 	baseline: 'FFICHeaderExtractor';
 	repository: 'filetree://repository';
