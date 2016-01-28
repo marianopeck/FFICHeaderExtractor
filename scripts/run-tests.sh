@@ -13,13 +13,10 @@ Metacello new
 	repository: 'filetree://repository';
 	load.
 	
-	Gofer it
-		url: 'http://smalltalkhub.com/mc/marianopeck/MarianoPublic/main';
-		package: 'SUnit-UI';
-	load.	
+
 "
 
-error=`./pharo Pharo.image test --fail-on-failure "FFICHeaderExtractor.*" 2>&1`
+error=`/bin/bash -c "./pharo Pharo.image test --fail-on-failure "FFICHeaderExtractor.*" 2>&1"`
 log=PharoDebug.log
 
 	
