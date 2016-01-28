@@ -15,4 +15,4 @@ addons:
 script: 
   - scripts/run-tests.sh 
 after_failure:
-  - cat PharoDebug.log
+  - cat Pharo.changes
