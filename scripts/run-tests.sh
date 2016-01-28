@@ -9,12 +9,12 @@ wget --quiet -O - get.pharo.org/alpha+vm | bash
 Metacello new 
 	baseline: 'FFICHeaderExtractor';
 	repository: 'filetree://repository';
-	load.
+load.
 	
-	Gofer it
-	url: 'http://smalltalkhub.com/mc/marianopeck/MarianoPublic/main';
-	package: 'SUnit-UI';
-	load.	
+Gofer it
+	url: 'http://smalltalkhub.com/mc/Pharo/Pharo50Inbox/main';
+	package: 'SLICE-Issue-17490-Command-Line-Handler-test-runner-should-print-a-small-stack-for-failures-and-errors';
+load.
 	
 "
 
