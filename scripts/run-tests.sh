@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-set -ex
+# set -ex
 
 wget --quiet -O - get.pharo.org/alpha+vm | bash
 
@@ -16,7 +16,7 @@ Metacello new
 
 "
 
-error=`/bin/bash -c "./pharo Pharo.image test --fail-on-failure "FFICHeaderExtractor.*" 2>&1"`
+error=`/bin/bash -c "./pharo Pharo.image test —no-xterm --fail-on-failure "FFICHeaderExtractor.*" 2>&1"`
 log=PharoDebug.log
 
 	
