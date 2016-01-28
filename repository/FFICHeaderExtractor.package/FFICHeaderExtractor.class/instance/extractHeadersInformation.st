@@ -13,7 +13,7 @@ extractHeadersInformation
 	log := self logFilename asFileReference readStream contents.
 	log ifNotEmpty: [ 
 		log inspect.
-		self error: 'There was a problem in the autogeneration. You may want to check ', self logFilename
+		self inform: 'There was a problem in the autogeneration. You may want to check ', self logFilename
 		 ].
 	
 	
