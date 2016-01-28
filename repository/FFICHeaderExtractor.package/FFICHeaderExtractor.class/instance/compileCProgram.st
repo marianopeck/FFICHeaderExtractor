@@ -16,8 +16,6 @@ compileCProgram
 	compileScriptStream nextPutAll: '"', self binaryFilename, '"'.
 	compileScriptStream nextPutAll: ' '.
 	compileScriptStream nextPutAll: '"', self cProgramFilename, '"'.
-	compileScriptStream nextPutAll: ' > '.
-	compileScriptStream nextPutAll: '"', self logFilename, '"'.
 	compileScriptStream nextPutAll: ' 2>&1 '.
 	"Transcript show: 'Compile string: ', compileScriptStream contents; cr."
 	self executeOSShellCommand: compileScriptStream contents.
