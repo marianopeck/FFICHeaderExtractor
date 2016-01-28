@@ -10,5 +10,6 @@ addons:
       - libssl1.0.0:i386
       - build-essential
       - gcc-multilib
+      - libfreetype6:i386
 script: 
   - scripts/run-tests.sh  
