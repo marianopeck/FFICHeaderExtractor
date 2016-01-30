@@ -241,7 +241,6 @@ Besides the [issues](https://github.com/marianopeck/FFICHeaderExtractor/issues),
 
 * Use `offsetof` and be able to extract structs information (internal organization and `sizeof()`).
 * Add support for compiling in Windows (`mingw`?).
-* Add this project to Pharo CI or Travis
 
 ## Authors
 
