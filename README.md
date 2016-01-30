@@ -3,7 +3,7 @@
 
 
 # FFICHeaderExtractor
-In short, FFICHeaderExtractor is a program to extract information (e.g. constants) from `C` headers and integrate that into Smalltalk `SharedPools`. 
+In short, FFICHeaderExtractor is a program to extract information (e.g. constants) from `C` headers and integrate that into Smalltalk `SharedPools`.
 
 When we use FFI to call a certain library, it's quite common that we need to pass specific constants (for example, `SIGKILL` to `kill()`). These constants are defined in `C` header files and can even change their values in different paltforms. Sometimes, these constants also are defined by the `C` preprocessor and so there is not way to get those values from FFI. If you don't have the value of those constants, you cannot make the FFI call. In other words, if I cannot know that the value of `SIGKILL` is `9`, how do I call `kill()` from FFI?
 
@@ -51,13 +51,13 @@ Metacello new
 
 Besides the above installation instructions, FFICHeaderExtractor can also be installed from the `Catalog Browser`, already present in Pharo. Just open it, search for FFICHeaderExtractor, then right click, `Install stable version`.
 
-	
-> Important: so far FFICHeaderExtractor works only in OSX and Unix. 
+
+> Important: so far FFICHeaderExtractor works only in OSX and Unix.
 
 
 
 ## Getting Started
-The user of this tool will be a developer of a FFI-based project. As an example, let's say we want to call some functions from the `libc` (the standard C library) via FFI. `libc` is huge and it has lots of functions and constants. For our example we will take only a small portion of it. 
+The user of this tool will be a developer of a FFI-based project. As an example, let's say we want to call some functions from the `libc` (the standard C library) via FFI. `libc` is huge and it has lots of functions and constants. For our example we will take only a small portion of it.
 
 ### Defining and using a FFISharedPool with FFI
 
@@ -94,21 +94,21 @@ LibCWrapper >> continueProcess: aPidNumber
 
 `SIGSTOP` and `SIGCONT` are signals which, via `kill()`, can pause a process with it's current state and  then resume it's execution later. The details of `primitiveKill:signal:` is not important for this example as it is the simple FFI call to `int kill(pid_t pid, int sig)`.
 
-The important part here is that thanks to `SharedPools`, the `LibCSharedPool` code can access directly to `SIGSTOP` and `SIGCONT` as if they were class variables. However, these are the class variables defined in `LibCWrapper`. For above code to really work, the class variables of `LibCSharedPool` must be initialized with the correct values. If we were using `SIGKILL` or `SIGTERM` for example, it's very likely that the values of them are `9` and `15` in almost every possible platform. But that's not the case of `SIGSTOP` and `SIGCONT`. Do you know their values? Are you sure they do not change among platforms? As we will read later, these constants **do change** between platforms. 
+The important part here is that thanks to `SharedPools`, the `LibCSharedPool` code can access directly to `SIGSTOP` and `SIGCONT` as if they were class variables. However, these are the class variables defined in `LibCWrapper`. For above code to really work, the class variables of `LibCSharedPool` must be initialized with the correct values. If we were using `SIGKILL` or `SIGTERM` for example, it's very likely that the values of them are `9` and `15` in almost every possible platform. But that's not the case of `SIGSTOP` and `SIGCONT`. Do you know their values? Are you sure they do not change among platforms? As we will read later, these constants **do change** between platforms.
 
-This problematic is part of what FFICHeaderExtractor solves. Let's see how. 
+This problematic is part of what FFICHeaderExtractor solves. Let's see how.
 
 ### Extracting and storing constants information
-Once you have defined your own `FFISharedPool` subclass and the constants for which you would like to get the values, the next step is to give more information to FFICHeaderExtractor so that it can extract the definitions from `C`. 
+Once you have defined your own `FFISharedPool` subclass and the constants for which you would like to get the values, the next step is to give more information to FFICHeaderExtractor so that it can extract the definitions from `C`.
 
 The created `FFISharedPool` subclass, must implement the class side method `#headersContainingVariables` which answers an array with the `C` header names that define all the defined constants. In the example of `LibCSharedPool` we have singal constants (defined in `signal.h`) and error constants (defined in `errno.h`). Therefore:
 
-```Smalltalk 
+```Smalltalk
 LibCSharedPool class >> headersContainingVariables
-	^ #( 'errno.h' 'signal.h' ) 
+	^ #( 'errno.h' 'signal.h' )
 ```
 
-<!-- TO-DO: put sec ref --> 
+<!-- TO-DO: put sec ref -->
 > For many cases, this is all the needed information. We will later see cases where more definitions are needed.
 
 The last step for the developer of the FFI tool (`LibCWrapper` in our example) is to trigger the extraction itself. The way of doing this is:
@@ -117,8 +117,8 @@ The last step for the developer of the FFI tool (`LibCWrapper` in our example) i
 LibCSharedPool extractAndStoreHeadersInformation
 ```
 
-<!-- TO-DO: put sec ref --> 
-As explained later, to be able to run `#extractAndStoreHeadersInformation` the user must have installed and reached by `$PATH`, `cc` (LLVM Clang) in OSX and `gcc` in Unix. 
+<!-- TO-DO: put sec ref -->
+As explained later, to be able to run `#extractAndStoreHeadersInformation` the user must have installed and reached by `$PATH`, `cc` (LLVM Clang) in OSX and `gcc` in Unix.
 
 The method `#extractAndStoreHeadersInformation` first extracts all the constants values (defined in C header files) **from the current running platform** and then creates a Smalltalk init method which is then compiled into the SharedPool. So, for example, if I execute such a method in OSX with a Pharo 32 bits VM, then the resulting autogenerated method is this:
 
@@ -156,12 +156,12 @@ initVariablesunix32
 
 If you compare `#initVariablesunix32` and `initVariablesMacOS32` you can get some interesting conclusions:
 
-* Some constants do not have the same value in OSX and in Linux. In fact, the ones we use in this example (`SIGSTOP` and `SIGCONT`) are different. So, without FFICHeaderExtractor this example would have been difficult to implement. 
-* Not all constants are defined in all OS. For example, `SIGINFO` is defined in OSX but not in Linux, and `SIGPOLL` the other way around. 
+* Some constants do not have the same value in OSX and in Linux. In fact, the ones we use in this example (`SIGSTOP` and `SIGCONT`) are different. So, without FFICHeaderExtractor this example would have been difficult to implement.
+* Not all constants are defined in all OS. For example, `SIGINFO` is defined in OSX but not in Linux, and `SIGPOLL` the other way around.
 
 The information embebed as part of the selectors of the methods is just for organization. When FFICHeaderExtractor needs to search the correct method for the current platform, it uses the `platformName` and `wordSize` of the pragma of the autogenerated method, not the selector itself.
 
-The developer of the FFI tool is responsible of running `#extractAndStoreHeadersInformation` for every platform he needs. Ideally, the developer could have a CI (continuous integration) server that automatically runs this for every platform. 
+The developer of the FFI tool is responsible of running `#extractAndStoreHeadersInformation` for every platform he needs. Ideally, the developer could have a CI (continuous integration) server that automatically runs this for every platform.
 
 
 ### Initializing variables from autogenerated method
@@ -172,7 +172,7 @@ Upon Pharo startup, `FFISharedPool` analyses each subclass to see which ones req
 For when we are *developing* the FFI tool, we don't want to quit Pharo and start again every time want to initialize variables again. For this cases, you can simply force the autogeneration and initialization this way:
 
 ```Smalltalk
-LibCSharedPool 
+LibCSharedPool
 	extractAndStoreHeadersInformation;
 	initializeVariables.
 ```
@@ -185,17 +185,17 @@ Sometimes you want the end user of the FFI tool to be able to use it just after 
 LibCSharedPool class >> initialize
 	self initializeVariables
 ```
- 
+
 That way, when the package is being loaded, Pharo will automatically send the class side `#initialize` to `LibCSharedPool` and such a method will initialize the class variables with the autogenerated methods.  
 
 >To conclude: end users of the FFI tool have nothing to do as starting Pharo will automatically initialize the class variables of the shared pools.
 
 ### Deploying the FFI tool with autogenerated methods
-The developers of the FFI tool should extract constants and autogenerate the init method (send `#extractAndStoreHeadersInformation`) for every platform they wish to support. The result will be the autogenerated methods like `#initVariablesMacOS32`, `#initVariablesMacOS64`, `#initVariablesunix32`, `#initVariablesunix64`, etc. All these methods are organized in a protocol called `autogenerated by FFICHeaderExtractor` of the particular SharedPool (`LibCSharedPool` in our example). 
+The developers of the FFI tool should extract constants and autogenerate the init method (send `#extractAndStoreHeadersInformation`) for every platform they wish to support. The result will be the autogenerated methods like `#initVariablesMacOS32`, `#initVariablesMacOS64`, `#initVariablesunix32`, `#initVariablesunix64`, etc. All these methods are organized in a protocol called `autogenerated by FFICHeaderExtractor` of the particular SharedPool (`LibCSharedPool` in our example).
 
 As we also said, to be able to run `#extractAndStoreHeadersInformation`, the developer needs C compiler installed.
 
-Once the autogenerated init methods are created, they should be versioned, distributed and deployed as any other method of the SharedPool class. 
+Once the autogenerated init methods are created, they should be versioned, distributed and deployed as any other method of the SharedPool class.
 
 **The end users of the FFI tool (not the developers) do not need a C compiler at all, nor to extract any constant. The end users do not even need to manually initialize the class variables of the SharedPool as that also happens automatically.**
 
@@ -214,11 +214,11 @@ The following are the steps to contribute to this project:
 * Create your feature branch: `git checkout -b MY_NEW_FEATURE`
 * Download latest Pharo 5.0 and load GitFileTree and this project:
 
-```Smalltalk 
+```Smalltalk
 Metacello new
  	baseline: 'FileTree';
    	repository: 'github://dalehenrich/filetree:issue_171/repository';
-   	load: 'Git'.	
+   	load: 'Git'.
 Metacello new
 	baseline: 'FFICHeaderExtractor';
  	repository: 'gitfiletree:///path/to/your/local/clone/FFICHeaderExtractor/repository';
@@ -227,13 +227,13 @@ Metacello new
 ```
 
 * You can now perform the changes you want at Pharo level and commit using the regular Monticello Browser.
-* Run all FFICHeaderExtractor tests to make sure you did not break anything. 
+* Run all FFICHeaderExtractor tests to make sure you did not break anything.
 * Push to the branch. Either from MC browser of with `git push origin MY_NEW_FEATURE`
 * Submit a pull request from github web interface.
- 
+
 
 ## History
-You can see the whole changelog of the project [Changelog](CHANGELOG.md) for details about the release history. 
+You can see the whole changelog of the project [Changelog](CHANGELOG.md) for details about the release history.
 
 
 ## Future work
@@ -260,12 +260,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Funding
 This project is sponsored by the [Pharo Consortium](http://consortium.pharo.org/).
-
-
-
-
-
-
-
-
-
