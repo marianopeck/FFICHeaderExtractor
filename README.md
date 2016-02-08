@@ -239,7 +239,7 @@ You can see the whole changelog of the project [Changelog](CHANGELOG.md) for det
 ## Future work
 Besides the [issues](https://github.com/marianopeck/FFICHeaderExtractor/issues), the following are also desired features:
 
-* Use `offsetof` and be able to extract structs information (internal organization and `sizeof()`).
+* Be able to extract structs information (internal organization and size). For this, as well as for other possible useful information, we could try to update the [libclang wrapper](http://smalltalkhub.com/#!/~CipT/LibClang) to Pharo 5.0 and new FFI. And then use [TalkFFI](http://smalltalkhub.com/#!/~CipT/TalkFFI) to get a Smalltalk-based visitor / AST on the C parsed code.
 * Add support for compiling in Windows (`mingw`?).
 
 ## Authors
