@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 set -ex
 
@@ -6,14 +6,9 @@ wget --quiet -O - get.pharo.org/alpha+vm | bash
 
 ./pharo Pharo.image eval --save "
 
-Metacello new 
+Metacello new
 	baseline: 'FFICHeaderExtractor';
 	repository: 'filetree://repository';
-load.
-	
-Gofer it
-	url: 'http://smalltalkhub.com/mc/Pharo/Pharo50Inbox/main';
-	package: 'SLICE-Issue-17490-Command-Line-Handler-test-runner-should-print-a-small-stack-for-failures-and-errors';
 load.
 	
 "
