@@ -7,7 +7,7 @@
 
 **Implemented enhancements:**
 
-- Added Travis CI integration
+- Added Travis CI integration using [Smalltalk-CI project](https://github.com/hpi-swa/smalltalkCI)
 
 **Closed issues:**
 
@@ -17,7 +17,7 @@
 
 **Fixed bugs:**
 
-- Fix a bug in `FFICHeaderExtractor >> #extractHeadersInformation` because it should NOT `#error:` if the log is not empty because it could have been warnings...Use a `#inform:` instead. 
+- Fix a bug in `FFICHeaderExtractor >> #extractHeadersInformation` because it should NOT `#error:` if the log is not empty because it could have been warnings...Use a `#inform:` instead.
 
 **Documentation updates**
 
@@ -27,4 +27,3 @@
 
 ## [v0.1.0](https://github.com/marianopeck/FFICHeaderExtractor/tree/v0.1.0) (2016-01-27)
 First milestone release.
-
