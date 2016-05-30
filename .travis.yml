@@ -1,22 +1,22 @@
-language: c
+language: smalltalk
+sudo: false
+
+# Select operating system(s)
 os:
   - linux
   - osx
+
 addons:
   apt:
     packages:
-      # General needed packages for Pharo
-      - lib32asound2
-      - lib32z1
-      - lib32bz2-1.0
-      - libssl1.0.0:i386
       # We need build-essential because this project needs gcc to autogenerate and compile C programs
       - build-essential
       - libfreetype6:i386
-      # The gcc-multilib is because in this project we automatically generate C programs that include libc 
+      # The gcc-multilib is because in this project we automatically generate C programs that include libc
       # headers and these are included only if installing gcc-multilib
       - gcc-multilib
-script: 
-  - scripts/run-tests.sh 
-after_failure:
-  - cat PharoDebug.log
+
+# Select compatible Smalltalk image(s)
+smalltalk:
+  - Pharo-alpha
+  - Pharo-5.0
